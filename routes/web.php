@@ -12,11 +12,12 @@
 */
 
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', 'ItemController@index');
+Route::get('/item/index', 'ItemController@index');
+Route::get('/item/detail/{id}', 'ItemController@detail')->name('detail');
 
 
 Auth::routes();
