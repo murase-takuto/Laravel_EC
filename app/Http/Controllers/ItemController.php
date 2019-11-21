@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Item;
 class ItemController extends Controller
 {
 	public function index() {
-		$items = DB::table('items')->get();
+		$items = Item::get();
 		return view('index', ['items' => $items]);
 	}
 	public function detail(Request $request,$id) {
-		$items = DB::table('items')->where('id', '=', compact('id'))->get();
-		return view('item/detail', ['items' => $items]);
+		$item = Item::find($id);
+		return view('item/detail', ['item' => $item]);
 	}
 }

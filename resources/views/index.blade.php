@@ -8,7 +8,7 @@
 	</tr>
 	@foreach ($items as $item)
 		<tr>
-			<td><a href=<?php echo route('detail', ['id' => $item->id]); ?>>{{$item->name}}</a></td>
+			<td><a href="{{ route('detail', ['id' => $item->id]) }}">{{$item->name}}</a></td>
 			<td>{{$item->price}}</td>
 			<td>
 			@if ($item->stock != 0)

@@ -64,6 +64,7 @@
                     </form>
                 </div>
             </div>
+			<a href="{{ url('login/twitter') }}" class="btn btn-default btn-md">twitterアカウントでログイン</a>
         </div>
     </div>
 </div>
