@@ -58,10 +58,15 @@ class Handler extends ExceptionHandler
 			return response()->json(['message' => $exception->getMessage()], 401);
 		}
 
-		if (in_array('admin', $exception->guards())) {
-			return redirect()->guest(route('admin.login'));
+		$guard = array_get($exception->guards(), 0);
+		switch ($guard) {
+			case 'admin':
+				$login = 'admin.login';
+				break;
+			default:
+				$login = 'admin';
+				break;
 		}
-
-		return redirect()->guest(route('login'));
+		return redirect()->guest(route($login));
 	}
 }
