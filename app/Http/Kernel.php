@@ -56,6 +56,10 @@ class Kernel extends HttpKernel
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+		'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+		//laravel-permission関連
+		'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+		'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+		'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
     ];
 }

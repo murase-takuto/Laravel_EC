@@ -10,8 +10,7 @@ class AdminLogoutController extends Controller
 {
 	public function logout()
 	{
-		$user = Auth::user();
-		Auth::logout();
+		Auth::guard('admin')->logout();
 		return redirect()->route('admin.login.submit');
 	}
 }
