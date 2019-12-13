@@ -44,7 +44,7 @@
 						</div>
 
 						<div>
-							<input type="submit" value="新規登録" class="btn btn-default btn-md">
+							<input type="submit" value="編集を実行" class="btn btn-default btn-md">
 						</div>
 					</form>
 				</div>
