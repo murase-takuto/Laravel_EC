@@ -1,5 +1,5 @@
 <?php
-
+require "vendor/autoload.php";
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
@@ -29,8 +29,7 @@ class OAuthLoginController extends Controller
 
 				$user_info = User::create([
 					'name' => $userSocialNickName,
-					//デベロッパーアカウントに利用規約のURｌを入力しないといけないためメールアドレスの取得は保留
-					//'email' => $userSocial->getMail(),
+					'email' => $userSocial->getMail(),
 				]);
 			} else {
 				$user_info = User::find($user->id);
@@ -45,10 +44,11 @@ class OAuthLoginController extends Controller
 				}
 			}
 
-			$twitter_config = config('twitter');
-			//$twitter_config = config('twitter');
-			$user_info->access_token = $twitter_config["access_token"];
-			$user_info->access_token_secret = $twitter_config["access_token_secret"];
+			$user_info->access_token = $userSocial->token;
+			$user_info->access_token_secret = $userSocial->tokenSecret;
+
+			$check = get_object_vars($userSocial);
+			$user_info->profile = $check["user"]["description"];
 
 			$user_info->save();
 			auth()->login($user_info, true);
